@@ -4,7 +4,18 @@ Build OCI images for [microsandbox](https://microsandbox.dev) without Docker —
 TypeScript API, a Dockerfile front-end, and the `beambox` CLI.
 
 ```bash
-bun add @beamhop/beambox   # or: npm i @beamhop/beambox
+bun add -g @beamhop/beambox   # the CLI, on your PATH
+npm i -g @beamhop/beambox     # the same thing with npm
+
+bun add @beamhop/beambox      # or as a project dependency, for the API
+```
+
+Without `-g` the package is only a dependency and no `beambox` command is added to your
+shell. To run it once without installing anything:
+
+```bash
+bunx @beamhop/beambox build -t my-app:local .
+npx @beamhop/beambox build -t my-app:local .
 ```
 
 Runs on Node 20+ and on Bun. The `beambox` binary works under either.

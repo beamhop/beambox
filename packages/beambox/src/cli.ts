@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module"
 import { join, resolve } from "node:path"
 import { parseArgs } from "node:util"
 import type { BuildEvent } from "@beamhop/builder"
@@ -34,6 +35,11 @@ Examples:
   beambox build -t app:local --output app.tar .
   beambox build -t ghcr.io/me/app:v1 --push .
 `
+
+/* Read from the manifest so `beambox version` can never drift from what was installed. */
+const { version: VERSION } = createRequire(import.meta.url)("../package.json") as {
+  version: string
+}
 
 const RESET = "\u001b[0m"
 const DIM = "\u001b[2m"
@@ -207,7 +213,7 @@ const main = async (): Promise<number> => {
     case "version":
     case "--version":
     case "-v":
-      process.stdout.write("beambox 0.1.0\n")
+      process.stdout.write(`beambox ${VERSION}\n`)
       return 0
     case "help":
     case "--help":

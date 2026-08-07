@@ -1,3 +1,8 @@
+// Read from the package being documented, so the badge cannot drift from what ships.
+import { version } from "../../../packages/beambox/package.json"
+
+export const VERSION = version
+
 export const GITHUB_URL = "https://github.com/beamhop/beambox"
 export const NPM_URL = "https://www.npmjs.com/package/@beamhop/beambox"
 export const MICROSANDBOX_URL = "https://microsandbox.dev"
@@ -5,7 +10,36 @@ export const REACT_BITS_URL = "https://reactbits.dev"
 
 export const editUrl = (source: string): string => `${GITHUB_URL}/blob/main/${source}`
 
-export const INSTALL_COMMAND = "bun add @beamhop/beambox"
+/** The hero's one-liner: the CLI needs a global install to put `beambox` on PATH. */
+export const INSTALL_COMMAND = "bun add -g @beamhop/beambox"
+
+export interface InstallRoute {
+  readonly title: string
+  readonly note: string
+  /** Each line is one command; the first is the recommended form. */
+  readonly commands: readonly string[]
+}
+
+export const INSTALL_ROUTES: readonly InstallRoute[] = [
+  {
+    title: "Install the CLI",
+    note: "The -g is what puts the beambox binary on your PATH. Without it the package is only a project dependency, and the command will not exist in your shell.",
+    commands: ["bun add -g @beamhop/beambox", "npm i -g @beamhop/beambox"],
+  },
+  {
+    title: "Run it without installing",
+    note: "Fetches, runs, and forgets — handy in CI, or to try a build before committing to anything.",
+    commands: [
+      "bunx @beamhop/beambox build -t my-app:local .",
+      "npx @beamhop/beambox build -t my-app:local .",
+    ],
+  },
+  {
+    title: "Use it as a library",
+    note: "A normal project dependency, for the fluent API and the Dockerfile front-end. No global install involved.",
+    commands: ["bun add @beamhop/beambox", "npm i @beamhop/beambox"],
+  },
+]
 
 export interface PackageCard {
   readonly name: string

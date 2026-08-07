@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Link } from "react-router-dom"
-import { GITHUB_URL, INSTALL_COMMAND } from "../content/site"
+import { GITHUB_URL, INSTALL_COMMAND, VERSION } from "../content/site"
 import { CopyButton } from "./CopyButton"
 import ShinyText from "./reactbits/ShinyText"
 import SplitText from "./reactbits/SplitText"
@@ -50,7 +50,7 @@ export const Hero = () => (
         className="inline-flex items-center gap-2.5 rounded-pill border border-line/70 bg-base/60 py-1.5 pr-4 pl-1.5 text-sm text-ink-muted backdrop-blur transition-colors duration-(--duration-quick) hover:border-beam/40 hover:text-ink"
       >
         <span className="rounded-pill bg-beam/15 px-2.5 py-0.5 font-mono text-[11px] text-beam">
-          v0.1.0
+          v{VERSION}
         </span>
         <ShinyText text="Docker is no longer a prerequisite" speed={4} className="text-sm" />
       </a>

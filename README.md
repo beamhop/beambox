@@ -18,7 +18,15 @@ layers, and hands the result to microsandbox — all in TypeScript, with no daem
 and no Docker.
 
 ```bash
-bun add @beamhop/beambox   # or: npm i @beamhop/beambox
+bun add -g @beamhop/beambox   # or: npm i -g @beamhop/beambox
+```
+
+The `-g` is what puts the `beambox` command on your PATH. To use the TypeScript API
+instead, install it as a project dependency without `-g`. To run it once without
+installing anything:
+
+```bash
+bunx @beamhop/beambox build -t my-app:local .   # or: npx @beamhop/beambox build …
 ```
 
 Runs on Node 20+ and on Bun. `RUN` steps additionally need the
