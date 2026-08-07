@@ -24,7 +24,10 @@ bun run build
 for name in "${PACKAGES[@]}"; do
   echo
   echo "── publishing packages/$name"
-  (cd "packages/$name" && bun publish --access public "$@")
+  # stdin is closed deliberately: with 2FA required for writes, publish otherwise blocks
+  # on an invisible one-time-password prompt instead of failing. Use an npm automation
+  # token, which is exempt from the prompt.
+  (cd "packages/$name" && bun publish --access public "$@" </dev/null)
 done
 
 echo

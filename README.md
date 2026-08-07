@@ -129,6 +129,10 @@ scripts/publish.sh --dry-run
 `bun publish` is required rather than `npm publish`: it rewrites the `workspace:*` ranges
 to the version being published, which npm would otherwise ship verbatim.
 
+If the account has two-factor authentication required for writes, use an npm **automation**
+token rather than a read-only or session token — publishing otherwise blocks on a one-time
+password prompt.
+
 ## Licence
 
 MIT
