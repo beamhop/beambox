@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/registry",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pure-TypeScript OCI Distribution v2 client \u2014 pull and push images without a Docker daemon.",
   "type": "module",
   "exports": {

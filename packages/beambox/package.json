@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/beambox",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Build OCI images for microsandbox without Docker. A TypeScript image builder with a Dockerfile front-end.",
   "type": "module",
   "bin": {

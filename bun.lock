@@ -18,7 +18,7 @@
     },
     "packages/beambox": {
       "name": "@beamhop/beambox",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "bin": {
         "beambox": "./dist/cli.mjs",
       },
@@ -32,7 +32,7 @@
     },
     "packages/builder": {
       "name": "@beamhop/builder",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "@beamhop/oci": "workspace:*",
         "@beamhop/registry": "workspace:*",
@@ -47,7 +47,7 @@
     },
     "packages/dockerfile": {
       "name": "@beamhop/dockerfile",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "@beamhop/builder": "workspace:*",
         "@beamhop/oci": "workspace:*",
@@ -55,7 +55,7 @@
     },
     "packages/microsandbox": {
       "name": "@beamhop/microsandbox",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "@beamhop/builder": "workspace:*",
         "@beamhop/oci": "workspace:*",
@@ -68,7 +68,7 @@
     },
     "packages/oci": {
       "name": "@beamhop/oci",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "tar-stream": "^3.1.7",
         "zod": "^4.1.14",
@@ -76,7 +76,7 @@
     },
     "packages/registry": {
       "name": "@beamhop/registry",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "@beamhop/oci": "workspace:*",
         "zod": "^4.1.14",

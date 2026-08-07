@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/oci",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OCI image primitives \u2014 digests, deterministic layer tars, manifests, and archive formats. No Docker.",
   "type": "module",
   "exports": {
