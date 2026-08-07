@@ -1,0 +1,26 @@
+{
+  "name": "@beambox/dockerfile",
+  "version": "0.1.0",
+  "description": "Parse Dockerfiles into a typed AST and lower them onto the beambox build engine.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@beambox/builder": "workspace:*",
+    "@beambox/oci": "workspace:*"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "beambox",
+  "version": "0.1.0",
+  "description": "Build OCI images for microsandbox without Docker. A TypeScript image builder with a Dockerfile front-end.",
+  "type": "module",
+  "bin": {
+    "beam": "./dist/cli.mjs"
+  },
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@beambox/builder": "workspace:*",
+    "@beambox/dockerfile": "workspace:*",
+    "@beambox/microsandbox": "workspace:*",
+    "@beambox/oci": "workspace:*",
+    "@beambox/registry": "workspace:*"
+  },
+  "keywords": [
+    "oci",
+    "docker",
+    "microsandbox",
+    "microvm",
+    "container",
+    "image",
+    "builder"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@beambox/oci": ["./packages/oci/src/index.ts"],
+      "@beambox/registry": ["./packages/registry/src/index.ts"],
+      "@beambox/builder": ["./packages/builder/src/index.ts"],
+      "@beambox/dockerfile": ["./packages/dockerfile/src/index.ts"],
+      "@beambox/microsandbox": ["./packages/microsandbox/src/index.ts"],
+      "beambox": ["./packages/beambox/src/index.ts"]
+    }
+  },
+  "include": ["packages/*/src/**/*.ts", "packages/*/test/**/*.ts", "e2e/**/*.ts"]
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+*.log
+
+# Build outputs and test scratch
+*.tar
+e2e/.work/

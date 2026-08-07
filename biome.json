@@ -1,0 +1,51 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.7/schema.json",
+  "files": {
+    "includes": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.css",
+      "**/*.json",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/*.tsbuildinfo",
+      "!site/src/components/reactbits"
+    ]
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "error",
+        "noTemplateCurlyInString": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "error",
+        "useNamingConvention": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "useLiteralKeys": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded",
+      "trailingCommas": "all"
+    }
+  }
+}

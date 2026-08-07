@@ -1,0 +1,28 @@
+{
+  "name": "@beambox/builder",
+  "version": "0.1.0",
+  "description": "Build OCI images from a typed, immutable spec \u2014 layer assembly, caching, and a pluggable RUN executor.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@beambox/oci": "workspace:*",
+    "@beambox/registry": "workspace:*",
+    "tar-stream": "^3.1.7",
+    "zod": "^4.1.14"
+  },
+  "license": "MIT"
+}
