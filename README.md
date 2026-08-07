@@ -118,6 +118,17 @@ The registry tests run a real, spec-conformant OCI registry in process rather th
 and the e2e suite proves every claim by booting the finished image and reading what it
 prints.
 
+## Releasing
+
+```bash
+npm login
+scripts/publish.sh          # publishes all six packages, dependencies first
+scripts/publish.sh --dry-run
+```
+
+`bun publish` is required rather than `npm publish`: it rewrites the `workspace:*` ranges
+to the version being published, which npm would otherwise ship verbatim.
+
 ## Licence
 
 MIT
