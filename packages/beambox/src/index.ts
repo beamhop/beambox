@@ -12,14 +12,14 @@ export {
   type RunMount,
   type Stage,
   UnknownStageError,
-} from "@beambox/builder"
-export { DockerfileParseError, UnsupportedInstructionError } from "@beambox/dockerfile"
+} from "@beamhop/builder"
+export { DockerfileParseError, UnsupportedInstructionError } from "@beamhop/dockerfile"
 export {
   type LoadedImage,
   loadIntoMicrosandbox,
   type MicrosandboxExecutorOptions,
   microsandboxExecutor,
-} from "@beambox/microsandbox"
+} from "@beamhop/microsandbox"
 export {
   type ArchiveFormat,
   BeamboxError,
@@ -28,7 +28,7 @@ export {
   type ImageConfig,
   type Platform,
   parseReference,
-} from "@beambox/oci"
+} from "@beamhop/oci"
 export {
   ForeignLayerError,
   hostPlatform,
@@ -36,7 +36,7 @@ export {
   type RegistryAuth,
   RegistryAuthError,
   RegistryRequestError,
-} from "@beambox/registry"
+} from "@beamhop/registry"
 export {
   type DockerfileBuild,
   type DockerfileSettings,

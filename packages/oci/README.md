@@ -1,10 +1,10 @@
-# @beambox/oci
+# @beamhop/oci
 
 OCI image primitives: content-addressed blobs, deterministic layer tars, manifests, and
 the three archive formats. No Docker, no daemon, no native dependencies.
 
 ```bash
-bun add @beambox/oci
+bun add @beamhop/oci
 ```
 
 ## Building a layer
@@ -13,7 +13,7 @@ Layers are built from a list of entries and streamed into a content-addressed st
 multi-gigabyte layer never lands in memory.
 
 ```ts
-import { BlobStore, buildLayer } from "@beambox/oci"
+import { BlobStore, buildLayer } from "@beamhop/oci"
 
 const store = new BlobStore("./cache/blobs")
 
@@ -48,7 +48,7 @@ a.digest === b.digest // true
 ## Assembling an image
 
 ```ts
-import { assembleImage, emptyImageConfig } from "@beambox/oci"
+import { assembleImage, emptyImageConfig } from "@beamhop/oci"
 
 const image = await assembleImage(store, {
   config: {
@@ -66,7 +66,7 @@ fails to unpack.
 ## Writing archives
 
 ```ts
-import { writeArchive, writeLayoutDirectory } from "@beambox/oci"
+import { writeArchive, writeLayoutDirectory } from "@beamhop/oci"
 
 await writeArchive(image, "app.tar", { tags: ["app:local"] })                  // docker save
 await writeArchive(image, "app.oci.tar", { tags: ["app:local"], format: "oci" }) // OCI layout
@@ -85,7 +85,7 @@ must keep its original manifest and config bytes or its digest silently changes.
 new digest is the correct outcome.
 
 ```ts
-import { imageFromDocuments } from "@beambox/oci"
+import { imageFromDocuments } from "@beamhop/oci"
 
 // Pull, then push elsewhere unmodified — same digest on both ends.
 const image = await imageFromDocuments(store, {
@@ -96,7 +96,7 @@ const image = await imageFromDocuments(store, {
 ## References
 
 ```ts
-import { parseReference, toRepoTag } from "@beambox/oci"
+import { parseReference, toRepoTag } from "@beamhop/oci"
 
 parseReference("python")                     // registry-1.docker.io, library/python, latest
 parseReference("ghcr.io/me/app:v1")          // ghcr.io, me/app, v1
@@ -112,7 +112,7 @@ Everything crossing a trust boundary is parsed through a zod schema rather than 
 failures name the document and the field:
 
 ```ts
-import { ManifestSchema, parseJson } from "@beambox/oci"
+import { ManifestSchema, parseJson } from "@beamhop/oci"
 
 const manifest = parseJson(ManifestSchema, bytes, "manifest for alpine:3.20")
 // ManifestError: manifest for alpine:3.20 does not match the OCI schema:

@@ -1,5 +1,5 @@
 {
-  "name": "@beambox/registry",
+  "name": "@beamhop/registry",
   "version": "0.1.0",
   "description": "Pure-TypeScript OCI Distribution v2 client \u2014 pull and push images without a Docker daemon.",
   "type": "module",
@@ -13,14 +13,28 @@
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsdown"
   },
   "dependencies": {
-    "@beambox/oci": "workspace:*",
+    "@beamhop/oci": "workspace:*",
     "zod": "^4.1.14"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beamhop/beambox.git",
+    "directory": "packages/registry"
+  },
+  "homepage": "https://beamhop.github.io/beambox/",
+  "bugs": "https://github.com/beamhop/beambox/issues",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

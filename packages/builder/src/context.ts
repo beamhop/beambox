@@ -1,9 +1,11 @@
 import { createReadStream } from "node:fs"
-import { lstat, readdir, readlink } from "node:fs/promises"
+import { lstat, readdir, readFile, readlink } from "node:fs/promises"
 import { isAbsolute, join, posix, relative, resolve } from "node:path"
 import { createGunzip } from "node:zlib"
-import type { LayerEntry } from "@beambox/oci"
+import type { LayerEntry } from "@beamhop/oci"
+import picomatch from "picomatch"
 import { extract } from "tar-stream"
+import { glob } from "tinyglobby"
 import { CopySourceError } from "./errors.ts"
 import type { CopySource } from "./spec.ts"
 
@@ -28,7 +30,7 @@ export const parseDockerignore = (contents: string): IgnoreMatcher => {
     .map((line) => {
       const negated = line.startsWith("!")
       const body = (negated ? line.slice(1) : line).replace(/^\.?\//, "").replace(/\/$/, "")
-      return { negated, glob: new Bun.Glob(body), body }
+      return { negated, matches: picomatch(body, { dot: true }), body }
     })
 
   return {
@@ -37,7 +39,7 @@ export const parseDockerignore = (contents: string): IgnoreMatcher => {
       for (const pattern of patterns) {
         // A directory pattern also covers everything beneath it.
         const matched =
-          pattern.glob.match(relativePath) ||
+          pattern.matches(relativePath) ||
           relativePath === pattern.body ||
           relativePath.startsWith(`${pattern.body}/`)
         if (matched) ignored = !pattern.negated
@@ -48,9 +50,9 @@ export const parseDockerignore = (contents: string): IgnoreMatcher => {
 }
 
 export const loadDockerignore = async (contextDir: string): Promise<IgnoreMatcher> => {
-  const file = Bun.file(join(contextDir, ".dockerignore"))
-  if (!(await file.exists())) return { ignores: () => false }
-  return parseDockerignore(await file.text())
+  const contents = await readFile(join(contextDir, ".dockerignore"), "utf8").catch(() => undefined)
+  if (contents === undefined) return { ignores: () => false }
+  return parseDockerignore(contents)
 }
 
 /** `--chown=1000:1000`. Names need the image's `/etc/passwd`, which we do not read. */
@@ -166,8 +168,7 @@ export const resolveCopy = async (
     const matches: string[] = []
 
     if (hasGlob) {
-      const glob = new Bun.Glob(source)
-      for await (const match of glob.scan({ cwd: contextDir, dot: true, onlyFiles: false })) {
+      for (const match of await glob(source, { cwd: contextDir, dot: true, onlyFiles: false })) {
         if (!ignore.ignores(match)) matches.push(match)
       }
       if (matches.length === 0) throw new CopySourceError(source, `matched no files.`)

@@ -19,7 +19,7 @@ const FLUENT: Sample = {
   title: "build.ts",
   note: "Every method returns a new spec, so specs can be shared and branched without a later call reaching back and changing an earlier result.",
   lang: "ts",
-  code: `import { image } from "beambox"
+  code: `import { image } from "@beamhop/beambox"
 
 const base = image("node:22-slim")
   .workdir("/app")
@@ -62,7 +62,7 @@ await built.load()`,
     title: "from-dockerfile.ts",
     note: "The Dockerfile front-end lowers onto the same build engine. dockerfileText does the same with a string, which is handy in tests.",
     lang: "ts",
-    code: `import { dockerfile } from "beambox"
+    code: `import { dockerfile } from "@beamhop/beambox"
 
 const source = await dockerfile("./Dockerfile", { context: "." })
 
@@ -98,7 +98,7 @@ await built.push("ghcr.io/me/demo:v1")                   // any OCI registry`,
     title: "errors.ts",
     note: "DockerfileParseError, UnsupportedInstructionError, RunFailedError, NoExecutorError, PlatformMismatchError, CopySourceError, UnknownStageError, RegistryAuthError.",
     lang: "ts",
-    code: `import { RunFailedError } from "beambox"
+    code: `import { RunFailedError } from "@beamhop/beambox"
 
 try {
   await image("alpine").run("exit 42").build()

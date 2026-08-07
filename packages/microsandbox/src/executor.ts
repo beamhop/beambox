@@ -1,5 +1,6 @@
+import { createHash } from "node:crypto"
 import { createReadStream, createWriteStream } from "node:fs"
-import { chmod, mkdir, mkdtemp, realpath, rm } from "node:fs/promises"
+import { chmod, copyFile, mkdir, mkdtemp, realpath, rm, writeFile } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { Readable } from "node:stream"
@@ -13,15 +14,15 @@ import {
   type ExecutorSession,
   RunFailedError,
   type RunMount,
-} from "@beambox/builder"
+} from "@beamhop/builder"
 import {
   type BuiltLayer,
   buildLayer,
   type Platform,
   storeLayerTar,
   writeArchive,
-} from "@beambox/oci"
-import { hostPlatform, platformLabel } from "@beambox/registry"
+} from "@beamhop/oci"
+import { hostPlatform, platformLabel } from "@beamhop/registry"
 import type { Sandbox } from "microsandbox"
 import { ensureBusybox } from "./busybox.ts"
 import { diffListings, parseListing, type RootfsEntry, repackLayerTar } from "./diff.ts"
@@ -116,7 +117,7 @@ export const microsandboxExecutor = (options: MicrosandboxExecutorOptions = {}):
         { store: context.store },
       )
       const guestBusybox = join(hostScratch, "bin", "busybox")
-      await Bun.write(guestBusybox, Bun.file(busybox))
+      await copyFile(busybox, guestBusybox)
       await chmod(guestBusybox, 0o755)
 
       await sdk.Image.load(archive, { tag: imageTag })
@@ -223,7 +224,7 @@ const applyMounts = (
       // A stable name keyed on the cache id (or its target) is what lets the same cache
       // come back on the next build.
       const key = mount.id ?? mount.target
-      const name = `beambox-cache-${new Bun.CryptoHasher("sha256").update(key).digest("hex").slice(0, 16)}`
+      const name = `beambox-cache-${createHash("sha256").update(key).digest("hex").slice(0, 16)}`
       builder.volume(mount.target, (m) => {
         const configured = m.namedWith(name, "ensure-exists", "directory")
         return mount.readonly ? configured.readonly() : configured
@@ -303,7 +304,7 @@ const createSession = (
 
     if (streamable.length > 0) {
       const listName = `step-${stepNumber}.list`
-      await Bun.write(
+      await writeFile(
         join(hostScratch, "state", listName),
         `${streamable.map((entry) => entry.path).join("\n")}\n`,
       )

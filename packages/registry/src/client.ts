@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises"
 import { Readable } from "node:stream"
-import { type Digest, mediaTypes } from "@beambox/oci"
+import { type Digest, digestOf, mediaTypes } from "@beamhop/oci"
 import { fetchToken, loadDockerCredentials, parseChallenge, type RegistryAuth } from "./auth.ts"
 import { RegistryAuthError, RegistryRequestError } from "./errors.ts"
 
@@ -155,7 +155,7 @@ export class RegistryClient {
     const digest =
       headerDigest !== null && /^sha256:[0-9a-f]{64}$/.test(headerDigest)
         ? (headerDigest as Digest)
-        : (`sha256:${new Bun.CryptoHasher("sha256").update(bytes).digest("hex")}` as Digest)
+        : digestOf(bytes)
 
     return { bytes, mediaType, digest }
   }
@@ -217,7 +217,8 @@ export class RegistryClient {
     const response = await this.request(target.toString(), scope, {
       method: "PUT",
       headers: { "content-type": "application/octet-stream", "content-length": String(size) },
-      body: Readable.toWeb(open()) as Bun.BodyInit,
+      // Node's web stream type does not line up with the runtime's fetch body type.
+      body: Readable.toWeb(open()) as RequestInit["body"],
       // Node and Bun both require this to stream a request body rather than buffer it.
       duplex: "half",
     } as RequestInit)
@@ -252,6 +253,6 @@ export class RegistryClient {
     const digest = response.headers.get("docker-content-digest")
     return digest !== null && /^sha256:[0-9a-f]{64}$/.test(digest)
       ? (digest as Digest)
-      : (`sha256:${new Bun.CryptoHasher("sha256").update(bytes).digest("hex")}` as Digest)
+      : digestOf(bytes)
   }
 }

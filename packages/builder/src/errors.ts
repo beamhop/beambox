@@ -1,4 +1,4 @@
-import { BeamboxError } from "@beambox/oci"
+import { BeamboxError } from "@beamhop/oci"
 
 /** A `RUN` step was requested but no executor was configured to run it. */
 export class NoExecutorError extends BeamboxError {
@@ -8,7 +8,7 @@ export class NoExecutorError extends BeamboxError {
     super(
       `This build has a RUN step (${instruction}) but no executor was configured.\n` +
         `RUN steps execute inside a microsandbox microVM. Either pass an executor:\n` +
-        `  import { microsandboxExecutor } from "@beambox/microsandbox"\n` +
+        `  import { microsandboxExecutor } from "@beamhop/microsandbox"\n` +
         `  build(plan, { store, executor: microsandboxExecutor() })\n` +
         `or remove the RUN steps to keep the build fully declarative.`,
     )

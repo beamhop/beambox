@@ -1,5 +1,5 @@
-import type { BuildOp, BuildPlan, Command, RunMount, Stage } from "@beambox/builder"
-import type { Platform } from "@beambox/oci"
+import type { BuildOp, BuildPlan, Command, RunMount, Stage } from "@beamhop/builder"
+import type { Platform } from "@beamhop/oci"
 import { DockerfileParseError, UnsupportedInstructionError } from "./errors.ts"
 import { type LogicalLine, lex, parseExecForm, splitWords, takeFlags } from "./lexer.ts"
 

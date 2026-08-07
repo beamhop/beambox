@@ -1,4 +1,4 @@
-import { BeamboxError } from "@beambox/oci"
+import { BeamboxError } from "@beamhop/oci"
 
 /** The registry rejected our credentials, or demanded some we do not have. */
 export class RegistryAuthError extends BeamboxError {

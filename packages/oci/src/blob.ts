@@ -1,5 +1,5 @@
 import { createReadStream, createWriteStream } from "node:fs"
-import { mkdir, rename, rm, stat } from "node:fs/promises"
+import { mkdir, readFile, rename, rm, stat } from "node:fs/promises"
 import { dirname, join } from "node:path"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
@@ -30,11 +30,18 @@ export const blobFromBytes = (data: Uint8Array): Blob => {
   }
 }
 
+/** `stat` is the portable existence check; there is no `fs.exists` worth using. */
+const exists = async (path: string): Promise<boolean> =>
+  await stat(path).then(
+    () => true,
+    () => false,
+  )
+
 export const blobFromFile = (path: string, digest: Digest, size: number): Blob => ({
   digest,
   size,
   stream: () => createReadStream(path),
-  bytes: async () => new Uint8Array(await Bun.file(path).arrayBuffer()),
+  bytes: async () => new Uint8Array(await readFile(path)),
 })
 
 /**
@@ -53,7 +60,7 @@ export class BlobStore {
   }
 
   async has(digest: Digest): Promise<boolean> {
-    return await Bun.file(this.path(digest)).exists()
+    return await exists(this.path(digest))
   }
 
   async get(digest: Digest): Promise<Blob> {
@@ -88,7 +95,7 @@ export class BlobStore {
 
       const final = this.path(digest)
       // Already present: identical content by definition, so keep the original.
-      if (await Bun.file(final).exists()) {
+      if (await exists(final)) {
         await rm(temp, { force: true })
       } else {
         await mkdir(dirname(final), { recursive: true })

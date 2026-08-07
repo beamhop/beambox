@@ -11,9 +11,9 @@ import TextType from "./reactbits/TextType"
 const Beams = lazy(() => import("./reactbits/Beams"))
 
 const TERMINAL_LINES = [
-  "beam build -t my-app:local .",
+  "beambox build -t my-app:local .",
   "msb run my-app:local",
-  "beam build -t ghcr.io/me/app:v1 --push .",
+  "beambox build -t ghcr.io/me/app:v1 --push .",
 ]
 
 export const Hero = () => (

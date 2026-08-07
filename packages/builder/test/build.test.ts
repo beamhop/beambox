@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test"
 import { join } from "node:path"
-import type { BlobStore } from "@beambox/oci"
+import type { BlobStore } from "@beamhop/oci"
 import { build } from "../src/build.ts"
 import { NoExecutorError, PlatformMismatchError, UnknownStageError } from "../src/errors.ts"
 import type { BuildPlan } from "../src/spec.ts"

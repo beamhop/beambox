@@ -23,7 +23,7 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "overview",
     title: "Overview",
-    pkg: "beambox",
+    pkg: "@beamhop/beambox",
     blurb: "Why beambox exists, how RUN works without Docker, and what it will not do.",
     source: "README.md",
     markdown: rootReadme,
@@ -31,15 +31,15 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "beambox",
     title: "beambox",
-    pkg: "beambox",
-    blurb: "The package you install: fluent API, Dockerfile front-end, and the beam CLI.",
+    pkg: "@beamhop/beambox",
+    blurb: "The package you install: fluent API, Dockerfile front-end, and the beambox CLI.",
     source: "packages/beambox/README.md",
     markdown: beamboxReadme,
   },
   {
     slug: "oci",
     title: "OCI primitives",
-    pkg: "@beambox/oci",
+    pkg: "@beamhop/oci",
     blurb: "Digests, deterministic layer tars, manifests, and the three archive formats.",
     source: "packages/oci/README.md",
     markdown: ociReadme,
@@ -47,7 +47,7 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "registry",
     title: "Registry client",
-    pkg: "@beambox/registry",
+    pkg: "@beamhop/registry",
     blurb: "OCI Distribution v2 pull and push, in TypeScript, with no daemon.",
     source: "packages/registry/README.md",
     markdown: registryReadme,
@@ -55,7 +55,7 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "builder",
     title: "Build engine",
-    pkg: "@beambox/builder",
+    pkg: "@beamhop/builder",
     blurb: "Stages, layer assembly, caching, and the pluggable RUN executor interface.",
     source: "packages/builder/README.md",
     markdown: builderReadme,
@@ -63,7 +63,7 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "dockerfile",
     title: "Dockerfile",
-    pkg: "@beambox/dockerfile",
+    pkg: "@beamhop/dockerfile",
     blurb: "Lexer, parser, typed AST, and the lowering onto the build engine.",
     source: "packages/dockerfile/README.md",
     markdown: dockerfileReadme,
@@ -71,7 +71,7 @@ export const DOC_PAGES: readonly DocPage[] = [
   {
     slug: "microsandbox",
     title: "microsandbox",
-    pkg: "@beambox/microsandbox",
+    pkg: "@beamhop/microsandbox",
     blurb: "The microVM RUN executor, the layer diff, and the msb handoff.",
     source: "packages/microsandbox/README.md",
     markdown: microsandboxReadme,

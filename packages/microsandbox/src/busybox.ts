@@ -1,10 +1,10 @@
-import { chmod, mkdir } from "node:fs/promises"
+import { chmod, mkdir, stat, writeFile } from "node:fs/promises"
 import { dirname, join, posix } from "node:path"
 import type { Readable } from "node:stream"
 import { createGunzip } from "node:zlib"
-import { ExecutorError } from "@beambox/builder"
-import { BlobStore, type BuiltLayer, mediaTypes, type Platform, parseReference } from "@beambox/oci"
-import { pullImage } from "@beambox/registry"
+import { ExecutorError } from "@beamhop/builder"
+import { BlobStore, type BuiltLayer, mediaTypes, type Platform, parseReference } from "@beamhop/oci"
+import { pullImage } from "@beamhop/registry"
 import { extract } from "tar-stream"
 
 /**
@@ -32,7 +32,13 @@ export const ensureBusybox = async (
   options: { store?: BlobStore } = {},
 ): Promise<string> => {
   const target = join(cacheDir, "busybox", `${platform.os}-${platform.architecture}`, "busybox")
-  if (await Bun.file(target).exists()) return target
+  if (
+    await stat(target).then(
+      () => true,
+      () => false,
+    )
+  )
+    return target
 
   const store = options.store ?? new BlobStore(join(cacheDir, "blobs"))
   const image = await pullImage(store, parseReference(BUSYBOX_IMAGE), { platform })
@@ -42,7 +48,7 @@ export const ensureBusybox = async (
     const binary = await readBusybox(layer)
     if (binary) {
       await mkdir(dirname(target), { recursive: true })
-      await Bun.write(target, binary)
+      await writeFile(target, binary)
       await chmod(target, 0o755)
       return target
     }

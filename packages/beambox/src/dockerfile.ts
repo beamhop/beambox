@@ -1,6 +1,7 @@
+import { readFile } from "node:fs/promises"
 import { dirname, resolve } from "node:path"
-import type { BuildPlan } from "@beambox/builder"
-import { parseDockerfile } from "@beambox/dockerfile"
+import type { BuildPlan } from "@beamhop/builder"
+import { parseDockerfile } from "@beamhop/dockerfile"
 import type { BuiltImage } from "./result.ts"
 import { type BuildSettings, buildPlan } from "./spec.ts"
 
@@ -52,13 +53,13 @@ export const dockerfile = async (
   settings: DockerfileSettings = {},
 ): Promise<DockerfileBuild> => {
   const absolute = resolve(path)
-  const file = Bun.file(absolute)
+  const contents = await readFile(absolute, "utf8").catch(() => undefined)
 
-  if (!(await file.exists())) {
+  if (contents === undefined) {
     throw new Error(`Dockerfile not found: ${absolute}`)
   }
 
-  return dockerfileText(await file.text(), {
+  return dockerfileText(contents, {
     context: settings.context ?? dirname(absolute),
     ...settings,
   })

@@ -1,17 +1,17 @@
-# @beambox/registry
+# @beamhop/registry
 
 A pure-TypeScript OCI Distribution v2 client. Pull and push images from Docker Hub, GHCR,
 ECR, GCR, or any conformant registry — with no Docker daemon involved.
 
 ```bash
-bun add @beambox/registry
+bun add @beamhop/registry
 ```
 
 ## Pulling
 
 ```ts
-import { BlobStore, parseReference } from "@beambox/oci"
-import { hostPlatform, pullImage } from "@beambox/registry"
+import { BlobStore, parseReference } from "@beamhop/oci"
+import { hostPlatform, pullImage } from "@beamhop/registry"
 
 const store = new BlobStore("./cache/blobs")
 
@@ -38,7 +38,7 @@ disagreement surfaces at pull time instead of producing an image that fails to u
 ## Pushing
 
 ```ts
-import { pushImage } from "@beambox/registry"
+import { pushImage } from "@beamhop/registry"
 
 const digest = await pushImage(image, parseReference("ghcr.io/me/app:v1"), {
   auth: { kind: "basic", username: "me", password: process.env.GITHUB_TOKEN ?? "" },
@@ -88,7 +88,7 @@ layers rather than producing an image whose layers cannot be fetched. `RegistryR
 carries the status and response body.
 
 ```ts
-import { PlatformNotFoundError } from "@beambox/registry"
+import { PlatformNotFoundError } from "@beamhop/registry"
 
 try {
   await pullImage(store, parseReference("some/image"), {
@@ -106,7 +106,7 @@ try {
 `blobExists`, `putBlob`, `putManifest` — with auth handled for you.
 
 ```ts
-import { RegistryClient } from "@beambox/registry"
+import { RegistryClient } from "@beamhop/registry"
 
 const client = new RegistryClient("ghcr.io")
 const { bytes, mediaType, digest } = await client.getManifest("me/app", "v1")

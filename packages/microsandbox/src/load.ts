@@ -1,7 +1,7 @@
 import { mkdtemp, rm } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import { type ArchiveFormat, type ImageArtifact, writeArchive } from "@beambox/oci"
+import { type ArchiveFormat, type ImageArtifact, writeArchive } from "@beamhop/oci"
 
 export interface LoadOptions {
   /** Tags to give the image in the microsandbox cache. */

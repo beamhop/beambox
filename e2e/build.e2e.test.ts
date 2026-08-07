@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from "bun:test"
 import { mkdtemp, rm } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import { dockerfileText, image } from "beambox"
+import { dockerfileText, image } from "@beamhop/beambox"
 
 /**
  * End-to-end verification against a real microsandbox runtime.

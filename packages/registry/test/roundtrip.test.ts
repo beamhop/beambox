@@ -8,7 +8,7 @@ import {
   buildLayer,
   emptyImageConfig,
   parseReference,
-} from "@beambox/oci"
+} from "@beamhop/oci"
 import { RegistryAuthError } from "../src/errors.ts"
 import { pullImage } from "../src/pull.ts"
 import { pushImage } from "../src/push.ts"

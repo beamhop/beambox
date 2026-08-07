@@ -5,7 +5,7 @@ import { Eyebrow, Lead, Reveal, Section, SectionTitle } from "../Section"
 const DOCKER_WAY = `docker build -t my-image:latest .
 docker save my-image:latest | msb load`
 
-const BEAM_WAY = `beam build -t my-image:latest .
+const BEAM_WAY = `beambox build -t my-image:latest .
 msb run my-image:latest`
 
 const STATS = [

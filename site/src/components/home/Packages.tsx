@@ -9,7 +9,7 @@ export const Packages = () => (
       <Eyebrow>Packages</Eyebrow>
       <SectionTitle>Six packages, one dependency you actually install.</SectionTitle>
       <Lead>
-        <code className="font-mono text-ink">@beambox/builder</code> never imports microsandbox. The
+        <code className="font-mono text-ink">@beamhop/builder</code> never imports microsandbox. The
         runtime dependency exists only where a <code className="font-mono text-ink">RUN</code> step
         actually needs it.
       </Lead>

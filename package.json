@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "build": "bun run --filter './packages/*' build",
-    "site:dev": "bun run --filter @beambox/site dev",
-    "site:build": "bun run --filter @beambox/site build",
+    "site:dev": "bun run --filter @beamhop/site dev",
+    "site:build": "bun run --filter @beamhop/site build",
     "test": "bun test packages",
     "test:e2e": "bun test e2e --timeout 600000",
     "typecheck": "tsc --noEmit",

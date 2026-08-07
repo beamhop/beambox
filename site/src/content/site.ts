@@ -1,11 +1,11 @@
 export const GITHUB_URL = "https://github.com/beamhop/beambox"
-export const NPM_URL = "https://www.npmjs.com/package/beambox"
+export const NPM_URL = "https://www.npmjs.com/package/@beamhop/beambox"
 export const MICROSANDBOX_URL = "https://microsandbox.dev"
 export const REACT_BITS_URL = "https://reactbits.dev"
 
 export const editUrl = (source: string): string => `${GITHUB_URL}/blob/main/${source}`
 
-export const INSTALL_COMMAND = "bun add beambox"
+export const INSTALL_COMMAND = "bun add @beamhop/beambox"
 
 export interface PackageCard {
   readonly name: string
@@ -15,32 +15,32 @@ export interface PackageCard {
 
 export const PACKAGES: readonly PackageCard[] = [
   {
-    name: "beambox",
+    name: "@beamhop/beambox",
     slug: "beambox",
-    summary: "The package you install: fluent API, Dockerfile front-end, and the beam CLI.",
+    summary: "The package you install: fluent API, Dockerfile front-end, and the beambox CLI.",
   },
   {
-    name: "@beambox/oci",
+    name: "@beamhop/oci",
     slug: "oci",
     summary: "OCI primitives — digests, deterministic layer tars, manifests, archive formats.",
   },
   {
-    name: "@beambox/registry",
+    name: "@beamhop/registry",
     slug: "registry",
     summary: "OCI Distribution v2 client — pull and push, no daemon.",
   },
   {
-    name: "@beambox/builder",
+    name: "@beamhop/builder",
     slug: "builder",
     summary: "The build engine: stages, layer assembly, caching, executor interface.",
   },
   {
-    name: "@beambox/dockerfile",
+    name: "@beamhop/dockerfile",
     slug: "dockerfile",
     summary: "Dockerfile lexer and parser, lowered onto the build engine.",
   },
   {
-    name: "@beambox/microsandbox",
+    name: "@beamhop/microsandbox",
     slug: "microsandbox",
     summary: "The microVM RUN executor and the msb handoff.",
   },

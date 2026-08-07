@@ -1,4 +1,4 @@
-# @beambox/dockerfile
+# @beamhop/dockerfile
 
 Parse Dockerfiles into a typed build plan for the beambox engine.
 
@@ -6,13 +6,13 @@ Most people want [`beambox`](../beambox), which wires this to the builder and th
 this package directly to inspect, lint, or transform Dockerfiles.
 
 ```bash
-bun add @beambox/dockerfile
+bun add @beamhop/dockerfile
 ```
 
 ## Parsing
 
 ```ts
-import { parseDockerfile } from "@beambox/dockerfile"
+import { parseDockerfile } from "@beamhop/dockerfile"
 
 const plan = parseDockerfile(`
   FROM node:22 AS builder
@@ -30,7 +30,7 @@ plan.stages[0].name         // "builder"
 plan.stages[1].ops[0]       // { kind: "copy", from: "builder", … }
 ```
 
-The result is a `BuildPlan` from `@beambox/builder` — the same structure the TypeScript API
+The result is a `BuildPlan` from `@beamhop/builder` — the same structure the TypeScript API
 produces, so both go through one engine and behave identically.
 
 ## What is supported
@@ -71,7 +71,7 @@ Refusals name the instruction and the line. Nothing is silently skipped — an i
 that quietly does nothing produces an image that looks right and behaves wrong.
 
 ```ts
-import { UnsupportedInstructionError } from "@beambox/dockerfile"
+import { UnsupportedInstructionError } from "@beamhop/dockerfile"
 
 try {
   parseDockerfile("FROM alpine\nONBUILD RUN echo hi\n")
@@ -102,7 +102,7 @@ parseDockerfile("FROM alpine builder\n")
 The lexer is exported for tooling that wants logical lines without a full parse.
 
 ```ts
-import { lex, parseExecForm, splitWords, takeFlags } from "@beambox/dockerfile"
+import { lex, parseExecForm, splitWords, takeFlags } from "@beamhop/dockerfile"
 
 const { lines, escape, syntax } = lex(source)
 lines[0] // { instruction: "FROM", args: "alpine", line: 1, source, heredocs }

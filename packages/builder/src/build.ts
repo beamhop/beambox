@@ -12,8 +12,8 @@ import {
   type LayerEntry,
   type Platform,
   parseReference,
-} from "@beambox/oci"
-import { hostPlatform, platformLabel, pullImage, type RegistryOptions } from "@beambox/registry"
+} from "@beamhop/oci"
+import { hostPlatform, platformLabel, pullImage, type RegistryOptions } from "@beamhop/registry"
 import { LayerCache } from "./cache.ts"
 import {
   applyConfigOp,

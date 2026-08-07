@@ -1,4 +1,4 @@
-import { BeamboxError } from "@beambox/oci"
+import { BeamboxError } from "@beamhop/oci"
 
 /** The Dockerfile could not be parsed. Always carries the line it failed on. */
 export class DockerfileParseError extends BeamboxError {

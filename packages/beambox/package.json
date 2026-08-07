@@ -1,10 +1,10 @@
 {
-  "name": "beambox",
+  "name": "@beamhop/beambox",
   "version": "0.1.0",
   "description": "Build OCI images for microsandbox without Docker. A TypeScript image builder with a Dockerfile front-end.",
   "type": "module",
   "bin": {
-    "beam": "./dist/cli.mjs"
+    "beambox": "./dist/cli.mjs"
   },
   "exports": {
     ".": {
@@ -16,17 +16,18 @@
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsdown"
   },
   "dependencies": {
-    "@beambox/builder": "workspace:*",
-    "@beambox/dockerfile": "workspace:*",
-    "@beambox/microsandbox": "workspace:*",
-    "@beambox/oci": "workspace:*",
-    "@beambox/registry": "workspace:*"
+    "@beamhop/builder": "workspace:*",
+    "@beamhop/dockerfile": "workspace:*",
+    "@beamhop/microsandbox": "workspace:*",
+    "@beamhop/oci": "workspace:*",
+    "@beamhop/registry": "workspace:*"
   },
   "keywords": [
     "oci",
@@ -37,5 +38,18 @@
     "image",
     "builder"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beamhop/beambox.git",
+    "directory": "packages/beambox"
+  },
+  "homepage": "https://beamhop.github.io/beambox/",
+  "bugs": "https://github.com/beamhop/beambox/issues",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises"
 import { homedir } from "node:os"
 import { join } from "node:path"
 import { z } from "zod"
@@ -116,10 +117,18 @@ export const loadDockerCredentials = async (
   registry: string,
   configPath = join(homedir(), ".docker", "config.json"),
 ): Promise<RegistryAuth | undefined> => {
-  const file = Bun.file(configPath)
-  if (!(await file.exists())) return undefined
+  const contents = await readFile(configPath, "utf8").catch(() => undefined)
+  if (contents === undefined) return undefined
 
-  const parsed = DockerConfigSchema.safeParse(await file.json().catch(() => undefined))
+  const parsed = DockerConfigSchema.safeParse(
+    ((): unknown => {
+      try {
+        return JSON.parse(contents)
+      } catch {
+        return undefined
+      }
+    })(),
+  )
   if (!parsed.success || !parsed.data.auths) return undefined
 
   for (const key of candidateKeys(registry)) {

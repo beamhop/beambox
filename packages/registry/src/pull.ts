@@ -20,7 +20,7 @@ import {
   type Platform,
   parseJson,
   referenceSelector,
-} from "@beambox/oci"
+} from "@beamhop/oci"
 import { RegistryClient, type RegistryOptions } from "./client.ts"
 import { ForeignLayerError, PlatformNotFoundError } from "./errors.ts"
 

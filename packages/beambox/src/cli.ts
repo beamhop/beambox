@@ -1,16 +1,16 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { join, resolve } from "node:path"
 import { parseArgs } from "node:util"
-import type { BuildEvent } from "@beambox/builder"
-import { BeamboxError } from "@beambox/oci"
+import type { BuildEvent } from "@beamhop/builder"
+import { BeamboxError } from "@beamhop/oci"
 import { dockerfile } from "./dockerfile.ts"
 import type { BuiltImage } from "./result.ts"
 
-const USAGE = `beam — build OCI images for microsandbox, without Docker
+const USAGE = `beambox — build OCI images for microsandbox, without Docker
 
 Usage:
-  beam build [options] <context>     Build an image from a Dockerfile
-  beam version                       Print the version
+  beambox build [options] <context>     Build an image from a Dockerfile
+  beambox version                       Print the version
 
 Build options:
   -f, --file <path>        Dockerfile to build (default: <context>/Dockerfile)
@@ -27,12 +27,12 @@ Build options:
       --insecure           Use plain HTTP for registries
   -q, --quiet              Only print errors
 
-With no output option, beam --load's the image so it is ready for msb run.
+With no output option, beambox --load's the image so it is ready for msb run.
 
 Examples:
-  beam build -t app:local .
-  beam build -t app:local --output app.tar .
-  beam build -t ghcr.io/me/app:v1 --push .
+  beambox build -t app:local .
+  beambox build -t app:local --output app.tar .
+  beambox build -t ghcr.io/me/app:v1 --push .
 `
 
 const RESET = "\u001b[0m"

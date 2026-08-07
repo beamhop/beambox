@@ -10,10 +10,10 @@ import {
   LayerCache,
   type RunMount,
   type Stage,
-} from "@beambox/builder"
-import { microsandboxExecutor } from "@beambox/microsandbox"
-import { BlobStore, type Platform } from "@beambox/oci"
-import type { RegistryOptions } from "@beambox/registry"
+} from "@beamhop/builder"
+import { microsandboxExecutor } from "@beamhop/microsandbox"
+import { BlobStore, type Platform } from "@beamhop/oci"
+import type { RegistryOptions } from "@beamhop/registry"
 import { asBuiltImage, type BuiltImage } from "./result.ts"
 
 export interface BuildSettings {

@@ -1,26 +1,28 @@
 # beambox
 
 Build OCI images for [microsandbox](https://microsandbox.dev) without Docker — a fluent
-TypeScript API, a Dockerfile front-end, and the `beam` CLI.
+TypeScript API, a Dockerfile front-end, and the `beambox` CLI.
 
 ```bash
-bun add beambox
+bun add @beamhop/beambox   # or: npm i @beamhop/beambox
 ```
+
+Runs on Node 20+ and on Bun. The `beambox` binary works under either.
 
 ## The CLI
 
 ```bash
-beam build -t my-app:local .              # build ./Dockerfile, load into microsandbox
+beambox build -t my-app:local .              # build ./Dockerfile, load into microsandbox
 msb run my-app:local
 
-beam build -t my-app:local -o app.tar .   # write a docker-save archive
-beam build -t ghcr.io/me/app:v1 --push .  # push to a registry
-beam build --target builder .             # stop at a named stage
-beam build --build-arg VERSION=1.2.3 .    # set a build argument
+beambox build -t my-app:local -o app.tar .   # write a docker-save archive
+beambox build -t ghcr.io/me/app:v1 --push .  # push to a registry
+beambox build --target builder .             # stop at a named stage
+beambox build --build-arg VERSION=1.2.3 .    # set a build argument
 ```
 
-With no output option, `beam build` loads the image into the local microsandbox cache, so
-it is immediately runnable with `msb run`. Run `beam help` for the full list.
+With no output option, `beambox build` loads the image into the local microsandbox cache, so
+it is immediately runnable with `msb run`. Run `beambox help` for the full list.
 
 ## The TypeScript API
 
@@ -28,7 +30,7 @@ it is immediately runnable with `msb run`. Run `beam help` for the full list.
 branched without a later call reaching back and changing an earlier result.
 
 ```ts
-import { image } from "beambox"
+import { image } from "@beamhop/beambox"
 
 const base = image("node:22-slim").workdir("/app").env({ NODE_ENV: "production" })
 
@@ -43,7 +45,7 @@ await built.load()
 ### Multi-stage builds
 
 ```ts
-import { image } from "beambox"
+import { image } from "@beamhop/beambox"
 
 const built = await image("node:22", { as: "builder" })
   .workdir("/src")
@@ -67,7 +69,7 @@ builds — and because it is its own filesystem, nothing in it ends up in the im
 ### From a Dockerfile
 
 ```ts
-import { dockerfile } from "beambox"
+import { dockerfile } from "@beamhop/beambox"
 
 const source = await dockerfile("./Dockerfile", { context: "." })
 const built = await source.build({
@@ -137,7 +139,7 @@ Every failure is typed and explains itself: `DockerfileParseError` (with line an
 `PlatformMismatchError`, `CopySourceError`, `UnknownStageError`, `RegistryAuthError`.
 
 ```ts
-import { RunFailedError } from "beambox"
+import { RunFailedError } from "@beamhop/beambox"
 
 try {
   await image("alpine").run("exit 42").build()

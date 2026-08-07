@@ -1,4 +1,4 @@
-import type { BlobStore, BuiltLayer, ImageArtifact, LayerEntry, Platform } from "@beambox/oci"
+import type { BlobStore, BuiltLayer, ImageArtifact, LayerEntry, Platform } from "@beamhop/oci"
 import type { RunMount } from "./spec.ts"
 
 /** Execute a command against the stage's current filesystem. */

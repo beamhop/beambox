@@ -18,20 +18,23 @@ layers, and hands the result to microsandbox — all in TypeScript, with no daem
 and no Docker.
 
 ```bash
-bun add beambox
+bun add @beamhop/beambox   # or: npm i @beamhop/beambox
 ```
+
+Runs on Node 20+ and on Bun. `RUN` steps additionally need the
+[microsandbox](https://microsandbox.dev) runtime; declarative builds need nothing at all.
 
 ## Quick start
 
 ```bash
-beam build -t my-app:local .   # build a Dockerfile and load it into microsandbox
-msb run my-app:local           # run it
+beambox build -t my-app:local .   # build a Dockerfile and load it into microsandbox
+msb run my-app:local              # run it
 ```
 
 Or from TypeScript:
 
 ```ts
-import { image } from "beambox"
+import { image } from "@beamhop/beambox"
 
 const built = await image("alpine:3.20")
   .run("apk add --no-cache curl")
@@ -65,14 +68,14 @@ purely declarative builds work anywhere, with nothing installed.
 
 | Package | What it does |
 | --- | --- |
-| [`beambox`](packages/beambox) | The package you install: fluent API, Dockerfile front-end, and the `beam` CLI |
-| [`@beambox/oci`](packages/oci) | OCI primitives — digests, deterministic layer tars, manifests, archive formats |
-| [`@beambox/registry`](packages/registry) | OCI Distribution v2 client — pull and push, no daemon |
-| [`@beambox/builder`](packages/builder) | The build engine: stages, layer assembly, caching, executor interface |
-| [`@beambox/dockerfile`](packages/dockerfile) | Dockerfile lexer and parser, lowered onto the build engine |
-| [`@beambox/microsandbox`](packages/microsandbox) | The microVM `RUN` executor and the `msb` handoff |
+| [`@beamhop/beambox`](packages/beambox) | The package you install: fluent API, Dockerfile front-end, and the `beambox` CLI |
+| [`@beamhop/oci`](packages/oci) | OCI primitives — digests, deterministic layer tars, manifests, archive formats |
+| [`@beamhop/registry`](packages/registry) | OCI Distribution v2 client — pull and push, no daemon |
+| [`@beamhop/builder`](packages/builder) | The build engine: stages, layer assembly, caching, executor interface |
+| [`@beamhop/dockerfile`](packages/dockerfile) | Dockerfile lexer and parser, lowered onto the build engine |
+| [`@beamhop/microsandbox`](packages/microsandbox) | The microVM `RUN` executor and the `msb` handoff |
 
-`@beambox/builder` never imports microsandbox. The runtime dependency exists only where a
+`@beamhop/builder` never imports microsandbox. The runtime dependency exists only where a
 `RUN` step actually needs it.
 
 ## Dockerfile support

@@ -7,7 +7,7 @@ import {
   buildLayer,
   type ImageArtifact,
   type Platform,
-} from "@beambox/oci"
+} from "@beamhop/oci"
 import type { ExecutionContext, ExecutionStep, Executor, ExecutorSession } from "../src/executor.ts"
 
 export const bytes = (value: string): Uint8Array => new TextEncoder().encode(value)

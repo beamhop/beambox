@@ -1,5 +1,5 @@
-import type { Digest, ImageArtifact, ImageReference } from "@beambox/oci"
-import { referenceSelector } from "@beambox/oci"
+import type { Digest, ImageArtifact, ImageReference } from "@beamhop/oci"
+import { referenceSelector } from "@beamhop/oci"
 import { RegistryClient, type RegistryOptions } from "./client.ts"
 
 export interface PushOptions extends RegistryOptions {

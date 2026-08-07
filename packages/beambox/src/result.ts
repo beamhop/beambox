@@ -1,4 +1,4 @@
-import { type LoadedImage, loadIntoMicrosandbox } from "@beambox/microsandbox"
+import { type LoadedImage, loadIntoMicrosandbox } from "@beamhop/microsandbox"
 import {
   type ArchiveFormat,
   type Digest,
@@ -6,8 +6,8 @@ import {
   parseReference,
   writeArchive,
   writeLayoutDirectory,
-} from "@beambox/oci"
-import { type PushOptions, pushImage } from "@beambox/registry"
+} from "@beamhop/oci"
+import { type PushOptions, pushImage } from "@beamhop/registry"
 
 /**
  * A finished image, plus the four things you can do with one.

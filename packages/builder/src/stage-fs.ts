@@ -1,7 +1,8 @@
 import { posix } from "node:path"
 import type { Readable } from "node:stream"
 import { createGunzip } from "node:zlib"
-import { type BuiltLayer, type LayerEntry, mediaTypes } from "@beambox/oci"
+import { type BuiltLayer, type LayerEntry, mediaTypes } from "@beamhop/oci"
+import picomatch from "picomatch"
 import { extract } from "tar-stream"
 import { CopySourceError } from "./errors.ts"
 
@@ -157,10 +158,10 @@ export class StageFilesystem {
       }
 
       // Fall back to glob matching, which is how `COPY --from=b /out/*.js .` resolves.
-      const glob = new Bun.Glob(clean)
+      const matches = picomatch(clean, { dot: true })
       let matched = false
       for (const path of this.index.keys()) {
-        if (glob.match(path)) {
+        if (matches(path)) {
           selected.set(path, posix.join(root, posix.basename(path)))
           matched = true
         }

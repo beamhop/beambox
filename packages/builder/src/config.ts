@@ -1,5 +1,5 @@
 import { posix } from "node:path"
-import type { ImageConfig, ImageConfigBlock } from "@beambox/oci"
+import type { ImageConfig, ImageConfigBlock } from "@beamhop/oci"
 import type { BuildOp, Command } from "./spec.ts"
 import { commandToArgv, DEFAULT_SHELL } from "./spec.ts"
 

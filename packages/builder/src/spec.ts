@@ -1,4 +1,4 @@
-import type { Platform } from "@beambox/oci"
+import type { Platform } from "@beamhop/oci"
 
 /** How a stage obtains its starting filesystem. */
 export type BaseSource =

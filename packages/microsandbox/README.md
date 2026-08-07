@@ -1,11 +1,11 @@
-# @beambox/microsandbox
+# @beamhop/microsandbox
 
 Execute Dockerfile `RUN` steps inside a [microsandbox](https://microsandbox.dev) microVM,
 and load finished images straight into its cache. This is the piece that removes Docker
 from the build.
 
 ```bash
-bun add @beambox/microsandbox microsandbox
+bun add @beamhop/microsandbox microsandbox
 ```
 
 ## Loading an image into microsandbox
@@ -14,7 +14,7 @@ The handoff the whole project exists for: an image goes from beambox to a runnab
 with no registry, no daemon, and no Docker in the path.
 
 ```ts
-import { loadIntoMicrosandbox } from "@beambox/microsandbox"
+import { loadIntoMicrosandbox } from "@beamhop/microsandbox"
 
 const loaded = await loadIntoMicrosandbox(image, { tags: ["app:local"] })
 console.log(loaded[0]?.reference) // "app:local"
@@ -31,8 +31,8 @@ recompression; pass `{ format: "docker" }` for a `docker save` archive instead.
 ## The `RUN` executor
 
 ```ts
-import { build } from "@beambox/builder"
-import { microsandboxExecutor } from "@beambox/microsandbox"
+import { build } from "@beamhop/builder"
+import { microsandboxExecutor } from "@beamhop/microsandbox"
 
 const image = await build(plan, {
   store,
@@ -79,7 +79,7 @@ which would otherwise recurse and drag unchanged files from earlier steps into t
 The diff functions are pure and exported, so this logic is testable without a VM:
 
 ```ts
-import { diffListings, parseListing, repackLayerTar } from "@beambox/microsandbox"
+import { diffListings, parseListing, repackLayerTar } from "@beamhop/microsandbox"
 
 const before = parseListing(await snapshotOne())
 const after = parseListing(await snapshotTwo())

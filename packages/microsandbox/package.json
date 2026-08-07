@@ -1,5 +1,5 @@
 {
-  "name": "@beambox/microsandbox",
+  "name": "@beamhop/microsandbox",
   "version": "0.1.0",
   "description": "Execute Dockerfile RUN steps inside a microsandbox microVM, and load built images straight into its cache. No Docker.",
   "type": "module",
@@ -13,19 +13,33 @@
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsdown"
   },
   "dependencies": {
-    "@beambox/builder": "workspace:*",
-    "@beambox/oci": "workspace:*",
-    "@beambox/registry": "workspace:*",
+    "@beamhop/builder": "workspace:*",
+    "@beamhop/oci": "workspace:*",
+    "@beamhop/registry": "workspace:*",
     "tar-stream": "^3.1.7"
   },
   "peerDependencies": {
     "microsandbox": ">=0.6.8"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beamhop/beambox.git",
+    "directory": "packages/microsandbox"
+  },
+  "homepage": "https://beamhop.github.io/beambox/",
+  "bugs": "https://github.com/beamhop/beambox/issues",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

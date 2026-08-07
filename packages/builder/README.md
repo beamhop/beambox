@@ -1,4 +1,4 @@
-# @beambox/builder
+# @beamhop/builder
 
 The beambox build engine: stages, layer assembly, caching, and the executor interface that
 `RUN` steps plug into.
@@ -8,7 +8,7 @@ defaults. Reach for this package directly when you are generating build plans
 programmatically or writing your own executor.
 
 ```bash
-bun add @beambox/builder
+bun add @beamhop/builder
 ```
 
 ## A build plan
@@ -16,8 +16,8 @@ bun add @beambox/builder
 A plan is data. Nothing here is fluent, and nothing is hidden.
 
 ```ts
-import { BlobStore } from "@beambox/oci"
-import { build } from "@beambox/builder"
+import { BlobStore } from "@beamhop/oci"
+import { build } from "@beamhop/builder"
 
 const store = new BlobStore("./cache/blobs")
 
@@ -40,7 +40,7 @@ const image = await build(
 ```
 
 No `RUN` steps means no executor is needed and no VM is booted. `build` returns a plain
-`ImageArtifact` from `@beambox/oci`, ready for the archive writers or the registry pusher.
+`ImageArtifact` from `@beamhop/oci`, ready for the archive writers or the registry pusher.
 
 ## Stages
 
@@ -75,7 +75,7 @@ The engine never imports microsandbox. It talks to this interface, which is why 
 anything.
 
 ```ts
-import type { Executor, ExecutorSession } from "@beambox/builder"
+import type { Executor, ExecutorSession } from "@beamhop/builder"
 
 export const myExecutor: Executor = {
   name: "my-executor",
@@ -112,7 +112,7 @@ Only `RUN` is cached, keyed on the parent image digest plus the exact step. `COP
 identical content by digest, so a cache entry would save nothing.
 
 ```ts
-import { LayerCache, defaultCacheDirectory } from "@beambox/builder"
+import { LayerCache, defaultCacheDirectory } from "@beamhop/builder"
 
 const cache = new LayerCache(store, `${defaultCacheDirectory()}/run-cache.json`)
 await build(plan, { store, executor, cache })
@@ -147,7 +147,7 @@ its *contents*, and a destination ending in `/` or any copy with several sources
 as a directory. `.dockerignore` is order-sensitive, so a later `!pattern` re-includes.
 
 ```ts
-import { loadDockerignore, parseDockerignore, resolveCopy } from "@beambox/builder"
+import { loadDockerignore, parseDockerignore, resolveCopy } from "@beamhop/builder"
 
 const ignore = parseDockerignore("node_modules\n*.log\n!keep.log\n")
 ignore.ignores("node_modules/x") // true

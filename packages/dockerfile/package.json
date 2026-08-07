@@ -1,5 +1,5 @@
 {
-  "name": "@beambox/dockerfile",
+  "name": "@beamhop/dockerfile",
   "version": "0.1.0",
   "description": "Parse Dockerfiles into a typed AST and lower them onto the beambox build engine.",
   "type": "module",
@@ -13,14 +13,28 @@
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsdown"
   },
   "dependencies": {
-    "@beambox/builder": "workspace:*",
-    "@beambox/oci": "workspace:*"
+    "@beamhop/builder": "workspace:*",
+    "@beamhop/oci": "workspace:*"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beamhop/beambox.git",
+    "directory": "packages/dockerfile"
+  },
+  "homepage": "https://beamhop.github.io/beambox/",
+  "bugs": "https://github.com/beamhop/beambox/issues",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

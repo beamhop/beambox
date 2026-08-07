@@ -1,4 +1,4 @@
-# @beambox/site
+# @beamhop/site
 
 The beambox documentation site — <https://beamhop.github.io/beambox/>.
 
