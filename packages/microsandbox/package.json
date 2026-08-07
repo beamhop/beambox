@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/microsandbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Execute Dockerfile RUN steps inside a microsandbox microVM, and load built images straight into its cache. No Docker.",
   "type": "module",
   "exports": {

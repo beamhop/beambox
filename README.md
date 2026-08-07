@@ -108,6 +108,7 @@ that looks right and behaves wrong, which is worse than a build that stops and e
 ```bash
 bun install
 bun test          # unit and integration — no network, no VMs
+bun run test:node # the built output executed by Node — no network, no VMs
 bun run test:e2e  # real builds against a real microsandbox runtime (needs `msb`)
 bun run typecheck
 bun run lint
@@ -116,7 +117,8 @@ bun run site:dev  # the documentation site — see site/README.md
 
 The registry tests run a real, spec-conformant OCI registry in process rather than a mock,
 and the e2e suite proves every claim by booting the finished image and reading what it
-prints.
+prints. `test:node` exists because the rest of the suite runs under Bun: it executes the
+built bundles with Node and fails if any of them still reach for a `Bun.*` global.
 
 ## Releasing
 

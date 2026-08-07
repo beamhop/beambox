@@ -11,10 +11,11 @@
     "site:dev": "bun run --filter @beamhop/site dev",
     "site:build": "bun run --filter @beamhop/site build",
     "test": "bun test packages",
-    "test:e2e": "bun test e2e --timeout 600000",
+    "test:e2e": "bun test e2e/build.e2e.test.ts --timeout 600000",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
-    "format": "biome check --write ."
+    "format": "biome check --write .",
+    "test:node": "bun run build && bun test e2e/node-compat.test.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.14",

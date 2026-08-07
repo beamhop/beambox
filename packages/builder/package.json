@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/builder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build OCI images from a typed, immutable spec \u2014 layer assembly, caching, and a pluggable RUN executor.",
   "type": "module",
   "exports": {

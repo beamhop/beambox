@@ -1,6 +1,6 @@
 {
   "name": "@beamhop/dockerfile",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parse Dockerfiles into a typed AST and lower them onto the beambox build engine.",
   "type": "module",
   "exports": {
