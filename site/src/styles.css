@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Everything visual in the site resolves to one of these — restyling the
+ * whole page means editing this block and nothing else.
+ */
+@theme {
+  /* Surfaces, darkest to lightest. */
+  --color-void: oklch(0.14 0.012 268);
+  --color-base: oklch(0.18 0.014 268);
+  --color-surface: oklch(0.22 0.016 268);
+  --color-raised: oklch(0.27 0.018 268);
+  --color-line: oklch(0.32 0.02 268);
+
+  /* Ink. */
+  --color-ink: oklch(0.97 0.005 268);
+  --color-ink-muted: oklch(0.76 0.014 268);
+  --color-ink-faint: oklch(0.6 0.016 268);
+
+  /* Accents: the beam (cyan) and the flux it carries (violet). */
+  --color-beam: oklch(0.82 0.13 205);
+  --color-beam-deep: oklch(0.62 0.15 235);
+  --color-flux: oklch(0.74 0.16 300);
+  --color-signal: oklch(0.82 0.15 85);
+  --color-danger: oklch(0.68 0.19 25);
+  --color-go: oklch(0.78 0.16 155);
+
+  /* Type. */
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --text-hero: clamp(2.75rem, 7vw, 5.5rem);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.035em;
+  --text-title: clamp(1.9rem, 3.6vw, 3rem);
+  --text-title--line-height: 1.08;
+  --text-title--letter-spacing: -0.025em;
+  --text-lead: clamp(1.05rem, 1.5vw, 1.3rem);
+  --text-lead--line-height: 1.6;
+
+  /* Rhythm. */
+  --spacing-section: clamp(5rem, 11vw, 9rem);
+  --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* Shape. */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+
+  /* Depth: a cool ambient shadow plus a beam-tinted glow for interactive surfaces. */
+  --shadow-card: 0 1px 0 0 oklch(1 0 0 / 0.05) inset, 0 24px 60px -30px oklch(0 0 0 / 0.9);
+  --shadow-glow:
+    0 0 0 1px oklch(0.82 0.13 205 / 0.25), 0 20px 70px -30px oklch(0.82 0.13 205 / 0.6);
+
+  /* Motion. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-quick: 180ms;
+  --duration-base: 420ms;
+  --duration-slow: 900ms;
+
+  /* Required by the vendored react-bits StarBorder. */
+  --animate-star-movement-bottom: star-movement-bottom linear infinite alternate;
+  --animate-star-movement-top: star-movement-top linear infinite alternate;
+
+  @keyframes star-movement-bottom {
+    0% {
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-100%, 0%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes star-movement-top {
+    0% {
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(100%, 0%);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The sticky header must not cover an anchored heading. */
+    scroll-padding-top: 6rem;
+    background-color: var(--color-void);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-beam);
+    color: var(--color-void);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-raised);
+    border-radius: var(--radius-pill);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-line);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-beam);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* A hairline grid that reads as engineering paper behind dense sections. */
+  .grid-veil {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.028) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  .beam-rule {
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-beam) 20%,
+      var(--color-flux) 55%,
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore-start lint/complexity/noImportantStyles: an accessibility preference has to beat every utility class that sets a duration. */
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    /* biome-ignore-end lint/complexity/noImportantStyles: end of the reduced-motion reset. */
+  }
+}
