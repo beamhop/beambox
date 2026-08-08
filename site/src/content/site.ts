@@ -39,6 +39,11 @@ export const INSTALL_ROUTES: readonly InstallRoute[] = [
     note: "A normal project dependency, for the fluent API and the Dockerfile front-end. No global install involved.",
     commands: ["bun add @beamhop/beambox", "npm i @beamhop/beambox"],
   },
+  {
+    title: "Teach your coding agent",
+    note: "Installs the beambox agent skill into .claude/skills (or your agent's equivalent), so Claude Code, Cursor, and Copilot build microsandbox images instead of reaching for Docker. Add -g for every project.",
+    commands: ["npx skills add beamhop/beambox", "npx skills add beamhop/beambox -g"],
+  },
 ]
 
 export interface PackageCard {
@@ -74,8 +79,8 @@ export const PACKAGES: readonly PackageCard[] = [
     summary: "Dockerfile lexer and parser, lowered onto the build engine.",
   },
   {
-    name: "@beamhop/microsandbox",
-    slug: "microsandbox",
+    name: "@beamhop/vm-executor",
+    slug: "vm-executor",
     summary: "The microVM RUN executor and the msb handoff.",
   },
 ]

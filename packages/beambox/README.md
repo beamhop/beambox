@@ -20,6 +20,12 @@ npx @beamhop/beambox build -t my-app:local .
 
 Runs on Node 20+ and on Bun. The `beambox` binary works under either.
 
+Working with a coding agent? Install the skill so it uses beambox instead of Docker:
+
+```bash
+npx skills add beamhop/beambox   # add -g to install it for every project
+```
+
 ## The CLI
 
 ```bash

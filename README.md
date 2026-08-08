@@ -72,6 +72,19 @@ registry client. The guest therefore needs no shell, `tar`, or `find` of its own
 A build with **no** `RUN` steps never boots a VM and never loads the microsandbox SDK, so
 purely declarative builds work anywhere, with nothing installed.
 
+## For coding agents
+
+beambox ships an [agent skill](skills/beambox/SKILL.md), so Claude Code, Cursor, Copilot,
+and the rest know how to build microsandbox images instead of reaching for Docker:
+
+```bash
+npx skills add beamhop/beambox
+```
+
+It installs into `.claude/skills/` (or your agent's equivalent) and covers the CLI, the
+TypeScript API, the instructions beambox refuses, and every typed error the build can
+throw. Add `--global` to install it for every project.
+
 ## Packages
 
 | Package | What it does |
@@ -81,7 +94,7 @@ purely declarative builds work anywhere, with nothing installed.
 | [`@beamhop/registry`](packages/registry) | OCI Distribution v2 client — pull and push, no daemon |
 | [`@beamhop/builder`](packages/builder) | The build engine: stages, layer assembly, caching, executor interface |
 | [`@beamhop/dockerfile`](packages/dockerfile) | Dockerfile lexer and parser, lowered onto the build engine |
-| [`@beamhop/microsandbox`](packages/microsandbox) | The microVM `RUN` executor and the `msb` handoff |
+| [`@beamhop/vm-executor`](packages/vm-executor) | The microVM `RUN` executor and the `msb` handoff |
 
 `@beamhop/builder` never imports microsandbox. The runtime dependency exists only where a
 `RUN` step actually needs it.

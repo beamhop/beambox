@@ -6,14 +6,14 @@ export const Install = () => (
   <Section id="install">
     <Reveal>
       <Eyebrow>Install</Eyebrow>
-      <SectionTitle>Three ways in, depending on what you want.</SectionTitle>
+      <SectionTitle>Four ways in, depending on what you want.</SectionTitle>
       <Lead>
         Runs on Node 20+ and on Bun. <code className="font-mono text-ink">RUN</code> steps
         additionally need the microsandbox runtime; declarative builds need nothing at all.
       </Lead>
     </Reveal>
 
-    <div className="mt-14 grid gap-5 lg:grid-cols-3">
+    <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
       {INSTALL_ROUTES.map((route, i) => (
         <Reveal key={route.title} delay={0.05 * i}>
           <div className="flex h-full flex-col rounded-card border border-line/60 bg-base/50 p-7">
