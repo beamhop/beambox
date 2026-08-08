@@ -1,5 +1,5 @@
 {
-  "name": "@beamhop/microsandbox",
+  "name": "@beamhop/vm-executor",
   "version": "0.1.2",
   "description": "Execute Dockerfile RUN steps inside a microsandbox microVM, and load built images straight into its cache. No Docker.",
   "type": "module",
@@ -32,7 +32,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/beamhop/beambox.git",
-    "directory": "packages/microsandbox"
+    "directory": "packages/vm-executor"
   },
   "homepage": "https://beamhop.github.io/beambox/",
   "bugs": "https://github.com/beamhop/beambox/issues",

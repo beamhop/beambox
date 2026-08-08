@@ -7,7 +7,7 @@
       "@beamhop/registry": ["./packages/registry/src/index.ts"],
       "@beamhop/builder": ["./packages/builder/src/index.ts"],
       "@beamhop/dockerfile": ["./packages/dockerfile/src/index.ts"],
-      "@beamhop/microsandbox": ["./packages/microsandbox/src/index.ts"],
+      "@beamhop/vm-executor": ["./packages/vm-executor/src/index.ts"],
       "@beamhop/beambox": ["./packages/beambox/src/index.ts"]
     }
   },

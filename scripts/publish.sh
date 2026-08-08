@@ -11,7 +11,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 # Dependency order: a package is published only after everything it imports.
-PACKAGES=(oci registry builder dockerfile microsandbox beambox)
+PACKAGES=(oci registry builder dockerfile vm-executor beambox)
 
 if ! bun pm whoami >/dev/null 2>&1; then
   echo "Not logged in to npm. Run: npm login" >&2

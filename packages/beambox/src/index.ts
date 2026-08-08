@@ -15,12 +15,6 @@ export {
 } from "@beamhop/builder"
 export { DockerfileParseError, UnsupportedInstructionError } from "@beamhop/dockerfile"
 export {
-  type LoadedImage,
-  loadIntoMicrosandbox,
-  type MicrosandboxExecutorOptions,
-  microsandboxExecutor,
-} from "@beamhop/microsandbox"
-export {
   type ArchiveFormat,
   BeamboxError,
   type Digest,
@@ -37,6 +31,12 @@ export {
   RegistryAuthError,
   RegistryRequestError,
 } from "@beamhop/registry"
+export {
+  type LoadedImage,
+  loadIntoMicrosandbox,
+  type MicrosandboxExecutorOptions,
+  microsandboxExecutor,
+} from "@beamhop/vm-executor"
 export {
   type DockerfileBuild,
   type DockerfileSettings,

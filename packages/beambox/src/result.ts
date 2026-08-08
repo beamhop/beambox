@@ -1,4 +1,3 @@
-import { type LoadedImage, loadIntoMicrosandbox } from "@beamhop/microsandbox"
 import {
   type ArchiveFormat,
   type Digest,
@@ -8,6 +7,7 @@ import {
   writeLayoutDirectory,
 } from "@beamhop/oci"
 import { type PushOptions, pushImage } from "@beamhop/registry"
+import { type LoadedImage, loadIntoMicrosandbox } from "@beamhop/vm-executor"
 
 /**
  * A finished image, plus the four things you can do with one.

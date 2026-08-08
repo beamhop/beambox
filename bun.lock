@@ -25,9 +25,9 @@
       "dependencies": {
         "@beamhop/builder": "workspace:*",
         "@beamhop/dockerfile": "workspace:*",
-        "@beamhop/microsandbox": "workspace:*",
         "@beamhop/oci": "workspace:*",
         "@beamhop/registry": "workspace:*",
+        "@beamhop/vm-executor": "workspace:*",
       },
     },
     "packages/builder": {
@@ -53,19 +53,6 @@
         "@beamhop/oci": "workspace:*",
       },
     },
-    "packages/microsandbox": {
-      "name": "@beamhop/microsandbox",
-      "version": "0.1.2",
-      "dependencies": {
-        "@beamhop/builder": "workspace:*",
-        "@beamhop/oci": "workspace:*",
-        "@beamhop/registry": "workspace:*",
-        "tar-stream": "^3.1.7",
-      },
-      "peerDependencies": {
-        "microsandbox": ">=0.6.8",
-      },
-    },
     "packages/oci": {
       "name": "@beamhop/oci",
       "version": "0.1.2",
@@ -80,6 +67,19 @@
       "dependencies": {
         "@beamhop/oci": "workspace:*",
         "zod": "^4.1.14",
+      },
+    },
+    "packages/vm-executor": {
+      "name": "@beamhop/vm-executor",
+      "version": "0.1.2",
+      "dependencies": {
+        "@beamhop/builder": "workspace:*",
+        "@beamhop/oci": "workspace:*",
+        "@beamhop/registry": "workspace:*",
+        "tar-stream": "^3.1.7",
+      },
+      "peerDependencies": {
+        "microsandbox": ">=0.6.8",
       },
     },
     "site": {
@@ -158,13 +158,13 @@
 
     "@beamhop/dockerfile": ["@beamhop/dockerfile@workspace:packages/dockerfile"],
 
-    "@beamhop/microsandbox": ["@beamhop/microsandbox@workspace:packages/microsandbox"],
-
     "@beamhop/oci": ["@beamhop/oci@workspace:packages/oci"],
 
     "@beamhop/registry": ["@beamhop/registry@workspace:packages/registry"],
 
     "@beamhop/site": ["@beamhop/site@workspace:site"],
+
+    "@beamhop/vm-executor": ["@beamhop/vm-executor@workspace:packages/vm-executor"],
 
     "@biomejs/biome": ["@biomejs/biome@2.5.7", "", { "optionalDependencies": { "@biomejs/cli-darwin-arm64": "2.5.7", "@biomejs/cli-darwin-x64": "2.5.7", "@biomejs/cli-linux-arm64": "2.5.7", "@biomejs/cli-linux-arm64-musl": "2.5.7", "@biomejs/cli-linux-x64": "2.5.7", "@biomejs/cli-linux-x64-musl": "2.5.7", "@biomejs/cli-win32-arm64": "2.5.7", "@biomejs/cli-win32-x64": "2.5.7" }, "bin": { "biome": "bin/biome" } }, "sha512-zr8K/DcY5tYsQOQwqMJ0AWElo6QgmgNI7idXgXLhevVszlt8RGVpesEJPqx3ThazLaOwjJ5Y8fz3BtH5fGZNsw=="],
 

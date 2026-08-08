@@ -25,7 +25,7 @@
   "dependencies": {
     "@beamhop/builder": "workspace:*",
     "@beamhop/dockerfile": "workspace:*",
-    "@beamhop/microsandbox": "workspace:*",
+    "@beamhop/vm-executor": "workspace:*",
     "@beamhop/oci": "workspace:*",
     "@beamhop/registry": "workspace:*"
   },

@@ -11,9 +11,9 @@ import {
   type RunMount,
   type Stage,
 } from "@beamhop/builder"
-import { microsandboxExecutor } from "@beamhop/microsandbox"
 import { BlobStore, type Platform } from "@beamhop/oci"
 import type { RegistryOptions } from "@beamhop/registry"
+import { microsandboxExecutor } from "@beamhop/vm-executor"
 import { asBuiltImage, type BuiltImage } from "./result.ts"
 
 export interface BuildSettings {

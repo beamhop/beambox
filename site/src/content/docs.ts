@@ -1,9 +1,9 @@
 import beamboxReadme from "../../../packages/beambox/README.md?raw"
 import builderReadme from "../../../packages/builder/README.md?raw"
 import dockerfileReadme from "../../../packages/dockerfile/README.md?raw"
-import microsandboxReadme from "../../../packages/microsandbox/README.md?raw"
 import ociReadme from "../../../packages/oci/README.md?raw"
 import registryReadme from "../../../packages/registry/README.md?raw"
+import vmExecutorReadme from "../../../packages/vm-executor/README.md?raw"
 import rootReadme from "../../../README.md?raw"
 
 export interface DocPage {
@@ -69,12 +69,12 @@ export const DOC_PAGES: readonly DocPage[] = [
     markdown: dockerfileReadme,
   },
   {
-    slug: "microsandbox",
-    title: "microsandbox",
-    pkg: "@beamhop/microsandbox",
+    slug: "vm-executor",
+    title: "vm-executor",
+    pkg: "@beamhop/vm-executor",
     blurb: "The microVM RUN executor, the layer diff, and the msb handoff.",
-    source: "packages/microsandbox/README.md",
-    markdown: microsandboxReadme,
+    source: "packages/vm-executor/README.md",
+    markdown: vmExecutorReadme,
   },
 ]
 
@@ -89,13 +89,13 @@ const LINK_MAP: Readonly<Record<string, string>> = {
   "packages/registry": "/docs/registry",
   "packages/builder": "/docs/builder",
   "packages/dockerfile": "/docs/dockerfile",
-  "packages/microsandbox": "/docs/microsandbox",
+  "packages/vm-executor": "/docs/vm-executor",
   "../beambox": "/docs/beambox",
   "../oci": "/docs/oci",
   "../registry": "/docs/registry",
   "../builder": "/docs/builder",
   "../dockerfile": "/docs/dockerfile",
-  "../microsandbox": "/docs/microsandbox",
+  "../vm-executor": "/docs/vm-executor",
 }
 
 export const resolveDocLink = (href: string): string => LINK_MAP[href] ?? href
