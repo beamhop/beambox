@@ -57,6 +57,16 @@ await built.toArchive("my-app.tar")     // or a docker-save archive
 await built.push("ghcr.io/me/my-app:v1") // or any OCI registry
 ```
 
+## Guides
+
+Step by step, from nothing installed to a running microVM:
+
+| Guide | For |
+| --- | --- |
+| [CLI guide](docs/cli.md) | Building a Dockerfile from the shell: install, build, run, ship, and what every failure means |
+| [Library guide](docs/library.md) | Generating images from TypeScript: immutable specs, multi-stage, cache mounts, outputs, testing |
+| [Agent guide](docs/agents.md) | Making your coding agent build with beambox instead of Docker |
+
 ## How `RUN` works without Docker
 
 microsandbox becomes its own build engine. For each stage beambox loads the

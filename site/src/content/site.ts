@@ -46,6 +46,38 @@ export const INSTALL_ROUTES: readonly InstallRoute[] = [
   },
 ]
 
+export interface GuideCard {
+  readonly title: string
+  readonly slug: string
+  /** The first command of the guide — what step one actually looks like. */
+  readonly command: string
+  readonly summary: string
+}
+
+export const GUIDES: readonly GuideCard[] = [
+  {
+    title: "CLI guide",
+    slug: "cli",
+    command: "beambox build -t my-app:local .",
+    summary:
+      "From an empty shell to msb run: install, write a Dockerfile, build it, run it, and send the result to an archive or a registry. Every flag and every failure explained.",
+  },
+  {
+    title: "Library guide",
+    slug: "library",
+    command: 'image("node:22-slim").run("npm ci")',
+    summary:
+      "Build images from TypeScript, for when the image is generated rather than checked in: immutable specs, multi-stage, cache mounts, progress events, typed errors, and testing a build.",
+  },
+  {
+    title: "Agent guide",
+    slug: "agents",
+    command: "npx skills add beamhop/beambox",
+    summary:
+      "Install the beambox skill so Claude Code, Cursor, and Copilot build microsandbox images instead of reaching for Docker — and build the sandboxes your own agents run inside.",
+  },
+]
+
 export interface PackageCard {
   readonly name: string
   readonly slug: string

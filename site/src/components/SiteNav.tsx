@@ -6,6 +6,7 @@ import { BeamMark } from "./BeamMark"
 const LINKS = [
   { href: "/#install", label: "Install" },
   { href: "/docs/overview", label: "Docs" },
+  { href: "/#guides", label: "Guides" },
   { href: "/docs/beambox", label: "API" },
   { href: "/#packages", label: "Packages" },
 ] as const

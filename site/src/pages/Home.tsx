@@ -3,6 +3,7 @@ import { CallToAction } from "../components/home/CallToAction"
 import { CodeShowcase } from "../components/home/CodeShowcase"
 import { DockerfileSupport } from "../components/home/DockerfileSupport"
 import { Features } from "../components/home/Features"
+import { Guides } from "../components/home/Guides"
 import { HowRunWorks } from "../components/home/HowRunWorks"
 import { Install } from "../components/home/Install"
 import { Limits } from "../components/home/Limits"
@@ -17,6 +18,7 @@ export const Home = () => (
     <HowRunWorks />
     <CodeShowcase />
     <Features />
+    <Guides />
     <DockerfileSupport />
     <Packages />
     <Limits />
